@@ -2,7 +2,7 @@ import argparse
 from password_generator import generate
 from password_generator.logger import get_logger
 
-logger = get_logger(__name__)
+logger = get_logger("cli")
 
 
 def main():
