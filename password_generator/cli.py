@@ -15,9 +15,9 @@ def main():
     parser.add_argument(
         "-f",
         "--format",
-        default=None,
+        default="Aa0@",
         type=str,
-        help="""Format of the password (String). Can be one of these options or a mix of them:
+        help="""Format of the password (String, default 'Aa0@'). Can be one of these options or a mix of them:
     'a': lower case characters
     'A': lower case characters
     '0': numbers from 0 to 9
