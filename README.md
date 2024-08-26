@@ -18,10 +18,10 @@ password_generator len -f (--format) -e (--exclude) -c (--custom)
   - 'A': lower case characters
   - '0': numbers from 0 to 9
   - '@': symbols
-  - 'h': lower case hex number (other formats will be ignored)
-  - 'H': upper case hex number (other formats will be ignored)
+  - 'h': lower case hex number (other formats and `exclude` will be ignored)
+  - 'H': upper case hex number (other formats and `exclude` will be ignored)
 - e, exclude: String (optional, default to ''). A string of characters (letters, numbers and symbols) to exclude from the generated password
-- c, custom: String (optional, default to ''). A string of letters, numbers and symbols to pick characters from. If this parameter is passed, `format` is ignored
+- c, custom: String (optional, default to ''). A string of letters, numbers and symbols to pick characters from. If this parameter is passed, `format` and `exclude` is ignored
 
 ### Examples
 
