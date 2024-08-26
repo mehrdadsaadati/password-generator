@@ -22,7 +22,13 @@ class GenerateRequest:
             length: int
                 Length of the password
             format: str
-                Format of the password
+                Format of the password. A string containing one of or mixture of these characters:
+                    a: Lower case letters
+                    A: Upper case letters
+                    0: Numbers from 0 to 9
+                    @: Symbols
+                    h: Lower case hex number (other formats will be ignored)
+                    H: Upper case hex number (other formats will be ignored)
             exclude: str
                 List of characters to exclude from the generated password
             custom: str
@@ -33,3 +39,14 @@ class GenerateRequest:
         self.format = format
         self.exclude = exclude
         self.custom = custom
+
+    def __eq__(self, value: object) -> bool:
+        if isinstance(value, GenerateRequest):
+            return (
+                self.length == value.length
+                and self.format == value.format
+                and self.exclude == value.exclude
+                and self.custom == value.custom
+            )
+        else:
+            return False
