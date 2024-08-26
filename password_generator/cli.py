@@ -1,4 +1,5 @@
 import argparse
+from password_generator import generate
 
 
 def main():
@@ -11,7 +12,7 @@ def main():
     )
     # add positional argument len
     parser.add_argument("len", type=int)
-    # add option format
+    # add option format (we use 'Aa0@' as default to avoid passing None to generate function)
     parser.add_argument(
         "-f",
         "--format",
@@ -45,7 +46,12 @@ def main():
 
     args = parser.parse_args()
 
-    print(args)
+    # generate password based on user input
+    try:
+        password = generate(args.len, args.format, args.exclude, args.custom)
+        print(f"Password:\n{password}")
+    except Exception as ex:
+        print(f"Error: {ex}")
 
 
 if __name__ == "__main__":
