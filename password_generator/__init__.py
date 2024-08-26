@@ -83,7 +83,8 @@ def generate(
     # remove characters based on exclude list
     if exclude:
         for e in exclude:
-            chars.remove(e)
+            if e in chars:
+                chars.remove(e)
 
     if not chars:
         raise PasswordParamsError(
