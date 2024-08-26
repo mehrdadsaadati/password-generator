@@ -1,5 +1,8 @@
 import argparse
 from password_generator import generate
+from password_generator.logger import get_logger
+
+logger = get_logger(__name__)
 
 
 def main():
@@ -45,13 +48,17 @@ def main():
     )
 
     args = parser.parse_args()
-
     # generate password based on user input
     try:
+        logger.debug(
+            f"Parsed input arguments: {args.len=}, {args.format=}, {args.exclude=}, {args.custom=}"
+        )
         password = generate(args.len, args.format, args.exclude, args.custom)
-        print(f"Password:\n{password}")
+
+        logger.info(f"Password of length {args.len} generated successfully")
+        print(f"Password: {password}")
     except Exception as ex:
-        print(f"Error: {ex}")
+        logger.error(f"{ex}")
 
 
 if __name__ == "__main__":

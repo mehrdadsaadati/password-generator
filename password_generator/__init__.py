@@ -1,4 +1,7 @@
 import secrets
+from password_generator.logger import get_logger
+
+logger = get_logger(__name__)
 
 _lower_case_letters = "abcdefghijklmnopqrstuvwxyz"
 _upper_case_letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -36,12 +39,17 @@ def generate(
         PasswordParamsError: If format is empty or invalid
     """
 
+    logger.debug(
+        f"Password generator parameters: {len=}, {format=}, {exclude=}, {custom=}"
+    )
+
     # check len
     if len <= 0:
         raise PasswordParamsError(f"Password len is less than 1: {len=}.")
 
     # generate password based on custom list of characters (ignore the format)
     if custom:
+        logger.info("Generating custom password")
         return __secure_random_pick(len, custom)
 
     # if custom is not used, then format is required
@@ -50,8 +58,10 @@ def generate(
 
     # generate hex number sequence (ignore the format)
     if "h" in format:
+        logger.info("Generating lower case hex password")
         return __secure_random_pick(len, _lower_case_hex_digits)
     if "H" in format:
+        logger.info("Generating upper case hex password")
         return __secure_random_pick(len, _upper_case_hex_digits)
 
     # generate password based on the format
@@ -80,6 +90,7 @@ def generate(
             f"Exclude removed all possible characters to generate password: {format=}, {exclude=}."
         )
 
+    logger.info(f"Generating formatted password: {format=}, {exclude=}")
     return __secure_random_pick(len, chars)
 
 
