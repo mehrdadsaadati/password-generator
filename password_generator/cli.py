@@ -17,7 +17,7 @@ def main():
         "--format",
         default=None,
         type=str,
-        help="""Format of the password (String). Format of the password. Can be one of these options or a mix of them:
+        help="""Format of the password (String). Can be one of these options or a mix of them:
     'a': lower case characters
     'A': lower case characters
     '0': numbers from 0 to 9
