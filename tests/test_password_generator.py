@@ -75,27 +75,14 @@ def test_exclusion():
 
     # check for exclusion
     assert (
-        re.fullmatch(r"^[^08liLIoO]+$", generate(16, format="Aa0@", exclude="08liLIoO"))
-        is not None
-    )
-    assert (
-        re.fullmatch(r"^[^08liLIoO]+$", generate(32, format="Aa0@", exclude="08liLIoO"))
-        is not None
-    )
-    assert (
-        re.fullmatch(r"^[^08liLIoO]+$", generate(64, format="Aa0@", exclude="08liLIoO"))
-        is not None
-    )
-    assert (
-        re.fullmatch(
-            r"^[^08liLIoO]+$", generate(128, format="Aa0@", exclude="08liLIoO")
-        )
-        is not None
-    )
-    assert (
         re.fullmatch(
             r"^[^08liLIoO]+$", generate(256, format="Aa0@", exclude="08liLIoO")
         )
+        is not None
+    )
+    # check for exclusion if excluded might not be in format (o and i won't appear in A0 format)
+    assert (
+        re.fullmatch(r"^[^08liLIoO]+$", generate(256, format="A0", exclude="08liLIoO"))
         is not None
     )
 
